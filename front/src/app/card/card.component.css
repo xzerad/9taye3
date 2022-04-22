@@ -1,0 +1,11 @@
+a{
+  text-decoration: none;
+}
+.subtitle{
+  display: flex;
+  justify-content: space-between;
+}
+.price{
+  color: red;
+  font-weight: bolder;
+}

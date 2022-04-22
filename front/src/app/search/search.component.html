@@ -1,0 +1,43 @@
+<div>
+  <div class="container-flex">
+    <form #searchForm="ngForm">
+      <div style="margin-top: 20px">
+        <mat-form-field appearance="fill">
+          <mat-label>Search</mat-label>
+          <input matInput name="search" [(ngModel)]="search.value">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Category</mat-label>
+          <mat-select name="category" [(ngModel)]="selectedCategory">
+            <mat-option *ngFor="let cat of category" [value]="cat.slug">{{cat.option}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="container-flex">
+          <button mat-flat-button color="primary" type="submit" (click)="showProducts()">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div style="margin-bottom: 10px">
+  </div>
+  <mat-divider></mat-divider>
+  <div class="container-grid">
+  <app-card *ngFor="let product of products" [imageUrl]="product._source?.image_url"
+            [title]="product._source.title" [brand]="product._source?.brand"
+            [description]="product._source?.description"
+            [location]="product._source?.product_url" [site]="product._source?.site" [price]="product._source?.price">
+
+  </app-card>
+</div>
+  <ng-template [ngIf]="found">
+    <mat-paginator [length]="total"
+                   [pageSize]="size"
+                   [pageSizeOptions]="[10]"
+                   (page)="click($event)"
+                   aria-label="Select page">
+    </mat-paginator>
+
+  </ng-template>
+
+</div>
+
